@@ -1,0 +1,24 @@
+class Solution(object):
+    def trailingZeroes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        two = 0
+        
+        for i in range(1,n+1):
+            remain = i
+            while remain%2 ==0:
+                two +=1
+                remain = remain//2
+                
+        
+        five = 0
+        for j in range(1,n+1):
+            remain = j
+            while remain%5 ==0:
+                five +=1
+                remain = remain //5
+        
+        ten = min(two, five)
+        return ten
