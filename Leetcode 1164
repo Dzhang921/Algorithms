@@ -1,0 +1,13 @@
+with cte as (
+select distinct product_id , 10 as original from products
+),
+
+cte2 as (
+select product_id, new_price from (
+    select product_id, new_price, rank() over (partition by product_id order by change_date desc) as rk from products
+    where change_date <= '2019-08-16') a
+    where a.rk=1
+)
+
+select cte.product_id, coalesce(new_price, original) as price from cte
+left join cte2 on cte.product_id = cte2.product_id
