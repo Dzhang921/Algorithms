@@ -1,0 +1,19 @@
+class Solution(object):
+    def canPermutePalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dict = {}
+        
+        for i in s:
+            if i not in dict:
+                dict[i] = 1
+            else:
+                dict[i] +=1
+        
+        count = 0
+        for k,v in dict.items():
+            count += v%2
+        
+        return count < 2
