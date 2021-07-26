@@ -1,0 +1,24 @@
+class Solution(object):
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowel = ['a','e','i', 'o', 'u','A','E','I','O','U']
+        inx = []
+        char = []
+        line = []
+        
+        for i, c in enumerate(s):
+            line.append(c)
+            if c in vowel:
+                inx.append(i)
+                char.append(c)
+            
+        
+        char = char[::-1]
+        line
+        for a,b in zip(inx, char):
+            line[a] = b
+        
+        return ''.join(line)
