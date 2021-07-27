@@ -1,0 +1,29 @@
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        dictr = {}
+        dictm ={}
+        
+        for i in magazine:
+            if i not in dictm:
+                dictm[i] = 1
+            else:
+                dictm[i] +=1
+        
+        for c in ransomNote:
+            if c not in dictr:
+                dictr[c] = 1
+            else:
+                dictr[c] += 1
+        
+        for k,v in dictr.items():
+            if k not in dictm:
+                return False
+            if dictr[k] > dictm[k]:
+                return False
+        
+        return True
