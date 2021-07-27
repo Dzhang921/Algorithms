@@ -1,0 +1,35 @@
+class Solution(object):
+    def arrangeCoins(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        left, right = 0, n
+        
+        while left <= right:
+            k = (left+right)//2
+            curr = k*(k+1)//2
+            if curr == n:
+                return k
+            if n < curr:
+                right = k-1
+            if n >curr:
+                left = k+1
+        return right
+        
+        or
+        
+    class Solution(object):
+    def arrangeCoins(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        i = 1
+        total = 0
+        
+        while total <= n:
+            total += i
+            if total > n:
+                return i-1
+            i += 1
