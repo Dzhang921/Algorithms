@@ -1,0 +1,22 @@
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        dicts = {}
+        for i in s:
+            if i not in dicts:
+                dicts[i] = 1
+            else:
+                dicts[i] += 1
+        for j in t:
+            if j not in dicts:
+                return j
+            else:
+                dicts[j] -= 1
+        
+        for k, v in dicts.items():
+            if v != 0:
+                return k
