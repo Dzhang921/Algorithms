@@ -1,0 +1,23 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if len(s)<2:
+            return len(s)
+        longest = 0
+        sub=[]
+        i=0
+        pointer = 0
+        while i < len(s):
+            if s[i] not in sub:
+                sub.append(s[i])
+                i +=1
+            else:
+                if len(sub) >= longest:
+                    longest = len(sub)
+                sub=[]
+                pointer+=1
+                i = pointer
+        return max(longest, len(sub))
