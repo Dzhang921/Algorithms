@@ -1,0 +1,26 @@
+class Solution(object):
+    def minMeetingRooms(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        if not intervals:
+            return 0
+        
+        start = sorted([i[0] for i in intervals])
+        end = sorted([i[1] for i in intervals])
+        
+        stp = 0
+        endp = 0
+        L= len(intervals)
+        room = 0
+        
+        while stp < L:
+            if start[stp] >= end[endp]:
+                room -= 1
+                endp += 1
+            
+            room += 1
+            stp += 1
+        return room
+                
