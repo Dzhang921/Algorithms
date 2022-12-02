@@ -1,0 +1,38 @@
+class Solution:
+    def __init__(self, grid):
+        self.grid = grid
+
+    def minPathSum(self):
+        grid= self.grid
+        height = len(grid)
+        wid = len(grid[0])
+
+        result = [[0]*wid]*height
+
+    
+
+        for h in range(height):
+            for w in range(wid):
+                if h==0 and w==0:
+                    result[0][0] = grid[0][0]
+                elif h==0 and w!=0:
+                    result[h][w] = result[h][w-1] + grid[h][w]
+                elif h!=0 and w==0:
+                    result[h][w] = result[h-1][w] + grid[h][w]
+                else:
+                    result[h][w] = grid[h][w] + min(result[h-1][w], result[h][w-1])
+
+
+        
+        return result[-1][-1]
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    x = Solution([[1,2,3],[1,2,3]])
+    print(x.minPathSum())
+   
