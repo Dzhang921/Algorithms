@@ -1,0 +1,57 @@
+def minimumAverageDifference(nums):
+    if len(nums)==1:
+        return 0
+    result = [0]*len(nums)
+    for i in range(1,len(nums)+1):
+        first = nums[:i]
+        first_avg = int(sum(first)/len(first))
+        
+        second = nums[i:]
+        if second == []:
+            second_avg = 0
+        else:
+            second_avg = int(sum(second)/len(second))
+        result[i-1] = abs(first_avg - second_avg)
+
+        
+
+    return result.index(min(result))
+
+def minimumAverageDifference1(nums):
+    import math
+    if len(nums)==1:
+        return 0
+    n = len(nums)
+    
+    pre_sum = [0] * (n+1)
+    suf_sum = [0] * (n+1)
+
+    for i in range(1,n+1):
+        pre_sum[i] = pre_sum[i-1] + nums[i-1]
+        suf_sum[-(i+1)] = suf_sum[-i] + nums[-i]
+
+
+    ans = 0
+    min_abs_diff = math.inf
+    
+    for index in range(n):
+        left_avg = pre_sum[index+1]//(index+1)
+        if index == (n-1):
+            right_avg = 0
+        else:
+            right_avg = suf_sum[index+1]//(n-index-1) 
+        
+        if abs(left_avg-right_avg)<min_abs_diff:
+            ans = index
+            min_abs_diff = abs(left_avg-right_avg)
+
+
+        
+
+    return ans
+
+
+
+
+if __name__ == '__main__':
+    print(minimumAverageDifference1([0,1,0,1,0,1]))
