@@ -1,0 +1,17 @@
+def distributeCandies(candyType):
+    can_eat = len(candyType)/2
+    candy_type = len(set(candyType))
+
+    if can_eat >= candy_type:
+        return candy_type
+    else:
+        return can_eat
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    print(distributeCandies([1,1,2,3]))
