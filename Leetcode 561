@@ -1,0 +1,14 @@
+def arrayPairSum(nums):
+    nums = sorted(nums)
+
+    total = 0
+    for i in range(0,len(nums),2):
+        total += min(nums[i], nums[i+1])
+    
+    return total
+
+
+
+
+if __name__ == '__main__':
+    print(arrayPairSum([1,4,3,2]))
