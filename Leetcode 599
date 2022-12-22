@@ -1,0 +1,22 @@
+def findRestaurant(list1, list2):
+    import math
+    result = []
+    min_sum = math.inf
+
+    for word in list1:
+        if word in list2:
+            l1_ind = list1.index(word)
+            l2_ind = list2.index(word)
+
+            if l1_ind+l2_ind < min_sum:
+                result = [word]
+                min_sum = l1_ind+l2_ind
+            elif l1_ind+l2_ind == min_sum:
+                result.append(word)
+
+    return result
+
+
+
+if __name__ == '__main__':
+    print(findRestaurant(["happy","sad","good"], ["sad","happy","good"]))
