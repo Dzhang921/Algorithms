@@ -21,3 +21,28 @@ class BinaryTree:
             t = BinaryTree(newNode)
             t.right = self.right
             self.right = t
+    
+    def getRight(self):
+        return self.right
+    
+    def getLeft(self):
+        return self.left
+    
+    def setRoot(self, obj):
+        self.key = obj
+    
+    def getRoot(self):
+        return self.key
+
+
+if __name__ == '__main__':
+    newTree = BinaryTree('a')
+
+    newTree.insertLeft('b')
+    newTree.insertRight('c')
+
+    newTree.left.insertRight('d')
+    newTree.right.insertLeft('e')
+    newTree.right.insertRight('f')
+
+    print(newTree.getLeft().getRight())
