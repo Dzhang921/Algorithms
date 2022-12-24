@@ -35,14 +35,38 @@ class BinaryTree:
         return self.key
 
 
+def buildParseTree(text):
+    flist = text.split()
+    stack = []
+    eTree = BinaryTree('')
+    stack.append(eTree)
+    currentTree = eTree
+
+    for i in flist:
+        if i == '(':
+            currentTree.insertLeft('')
+            stack.append(currentTree)
+            currentTree = currentTree.getLeft()
+
+        elif i in ['+', '-', '*', '/']:
+            currentTree.setRoot(i)
+            currentTree.insertRight('')
+            stack.append(currentTree)
+            currentTree.getRight()
+        elif i == ')':
+            currentTree = stack.pop()
+        
+        elif i not in ['+', '-', '*', '/', ')']:
+            try:
+                currentTree.setRoot(int(i))
+                parent = stack.pop()
+                currentTree = parent
+            except:
+                raise ValueError('{} is not a valid integer'.format(i))
+    
+    return eTree
+
+
+
 if __name__ == '__main__':
-    newTree = BinaryTree('a')
-
-    newTree.insertLeft('b')
-    newTree.insertRight('c')
-
-    newTree.left.insertRight('d')
-    newTree.right.insertLeft('e')
-    newTree.right.insertRight('f')
-
-    print(newTree.getLeft().getRight())
+    print(buildParseTree("( ( 10 + 5 ) * 3 )"))

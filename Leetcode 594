@@ -1,0 +1,80 @@
+def findLHS(nums):
+    nums.sort()
+    result = []
+    
+    if nums[-1] - nums[0] == 0 or len(nums)<2:
+        return len(result)
+    
+    if len(nums)==2:
+        if nums[1] - nums[0] == 1:
+            return 2
+        else:
+            return 0
+
+    
+    left_p = 0
+    max_len = 0
+
+    while left_p <= len(nums)-2:
+        result = [nums[left_p]]
+        right_p = left_p + 1
+        while nums[left_p] == nums[right_p]:
+            result.append(nums[right_p])
+            right_p += 1
+            left_p += 1
+
+            if right_p > len(nums)-1:
+                break
+        if right_p <= len(nums)-1:     
+            diff = nums[right_p] - nums[left_p]
+        else:
+            diff = 2
+
+        while right_p <= len(nums)-1 and diff==1:
+            if diff == 1:
+                result.append(nums[right_p])
+
+            if right_p == len(nums)-1:
+                break
+                
+
+            right_p +=1 
+            diff = nums[right_p] - nums[left_p]
+
+            
+        
+        if len(result)>1 and len(result)>max_len and min(result) != max(result):
+            max_len = len(result)
+        left_p += 1
+    
+    return max_len
+
+
+def findLHS1(nums):
+    nums.sort()
+
+    hash_map = dict()
+
+    for num in nums:
+        if num not in hash_map:
+            hash_map[num] = 1
+        else:
+            hash_map[num] +=1
+    res = 0
+
+    for key, value in hash_map.items():
+        if key+1 in hash_map:
+            res = max(res, hash_map[key]+hash_map[key+1])
+
+    return res
+
+        
+
+            
+
+
+
+
+
+if __name__ == '__main__':
+    print(findLHS1([83,86,77,15,93,35,86,92,49,21]))
