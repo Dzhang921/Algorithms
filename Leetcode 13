@@ -1,0 +1,75 @@
+def intToRoman(num):
+    """
+    :type num: int
+    :rtype: str
+    """
+    dict_ = {
+        1000:'M',
+        500:'D',
+        100:'C',
+        50:'L',
+        10:'X',
+        5:'V',
+        1:'I'
+    }
+    
+
+    result = ''
+
+
+    if num // 1000 > 0:
+        result += dict_[1000] * (num//1000)
+        num = num % 1000
+
+    if num % 1000 == 900:
+        result += dict_[100] + dict_[1000]
+        num -= 900
+    
+    if num // 500 > 0:
+        result += dict_[500] * (num//500)
+        num = num % 500
+    
+    if num % 500 == 400:
+        result += dict_[100] + dict_[500]
+        num -= 400
+    
+    if num // 100 > 0:
+        result += dict_[100] * (num//100)
+        num = num % 100
+    
+    if num % 100 == 90:
+        result += dict_[10] + dict_[100]
+        num -= 90
+    
+    if num // 50 > 0:
+        result += dict_[50] * (num//50)
+        num = num % 50
+    
+    if num % 50 == 40:
+        result += dict_[10] + dict_[50]
+        num -= 40
+
+    if num // 10 > 0:
+        result += dict_[10] * (num//10)
+        num = num % 10
+    
+    if num % 10 == 9:
+        result += dict_[1] + dict_[10]
+        num -= 9
+    
+    if num // 5 > 0:
+        result += dict_[5] * (num//5)
+        num = num % 5
+    
+    if num == 4:
+        result += dict_[1] + dict_[5]
+    else:
+        result += dict_[1] * num
+
+    
+   
+
+    return result
+
+if __name__ == '__main__':
+    print(intToRoman(5390))
