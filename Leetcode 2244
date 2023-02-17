@@ -4,8 +4,25 @@ def minimumRounds(tasks):
     :type tasks: List[int]
     :rtype: int
     """
+    from collections import Counter
+    dict_ = Counter(tasks)
+
+    if min(dict_.values()) < 2:
+        return -1
+
+    result = 0
+
+    for task in dict_.values():
+        turn = task // 3
+        result += turn
+
+        if task % 3 in [1,2]:
+            result +=1
+
+    return result
+
 
 
 if __name__ == '__main__':
-
-    print()
+    print(minimumRounds([2,2,3,3,2,4,4,4,4,4]))
+    print(minimumRounds([2,3,3]))
